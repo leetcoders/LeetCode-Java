@@ -33,7 +33,7 @@ public class Solution {
             if(pre.val == cur.val) {
                 pre.next = cur.next;
             } else {
-                pre = cur;
+                pre = pre.next;
             }
             cur = cur.next;
         }
