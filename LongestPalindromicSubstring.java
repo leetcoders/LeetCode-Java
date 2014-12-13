@@ -12,7 +12,9 @@
            2. Time O(n^2), Space O(n)
            3. Time O(n^2), Space O(1) (actually much more efficient than 1 & 2)
            4. Time O(n), Space O(n) (Manacher's Algorithm)
+           5. Time O(n), Smaller Space than solution 4. (Manacher's Algorithm)
  */
+
 public class Solution {
     public String longestPalindrome_1(String s) {
         int n = s.length();
@@ -73,12 +75,12 @@ public class Solution {
             sb.append(s.charAt(i));
         }
         sb.append("#$");
-        n = 2 * n + 2;
+        n = 2 * n + 3;
         int mx = 0, id = 0;
         int[] p = new int[n];
         Arrays.fill(p,0);
         for (int i = 1; i < n - 1; ++i) {
-            p[i] = (mx > i) ? Math.min(p[2 * id - i], mx - i): 0;
+            p[i] = (mx > i) ? Math.min(p[2 * id - i], mx - i) : 0;
             while (sb.charAt(i + 1 + p[i]) == sb.charAt(i - 1 - p[i])) ++p[i];
             if (i + p[i] > mx) {
                 id = i; mx = i + p[i];
@@ -88,6 +90,32 @@ public class Solution {
             }
         }
         idx = (idx - maxLen - 1) / 2;
+        return s.substring(idx, idx + maxLen);
+    }
+    public String longestPalindrome_5(String s) {
+        int n = s.length();
+        int idx = 0, maxLen = 0;
+        int mx = 0, id = 0;
+        int[] p = new int[2*n+1];
+        Arrays.fill(p,0);
+        for (int i = 0; i < 2*n+1; ++i) {
+            p[i] = (mx > i) ? Math.min(p[2*id-i], mx - i) : 0;
+            int left = i - 1 - p[i],  right = i + 1 + p[i];
+            while (left>=0 && right <= 2*n) {
+                if (left % 2 == 0 || s.charAt(left/2) == s.charAt(right/2)) {
+                    ++p[i];
+                } else break;
+                --left;
+                ++right;
+            }
+            if (i + p[i] > mx) {
+                id = i; mx = i + p[i];
+            }
+            if (p[i] > maxLen) {
+                idx = i; maxLen = p[i];
+            }
+        }
+        idx = (idx - maxLen) / 2;
         return s.substring(idx, idx + maxLen);
     }
 }
