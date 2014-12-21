@@ -13,7 +13,7 @@
  Solution: 1. recursive solution. O(n) space. get inorder list first.
            2. recursive solution. O(n) space. with only auxiliary two pointers.
            3. Use a stack. Iteration.
-           4. TBD. Morris inorder traversal. O(1) space. with only auxiliary two pointers.
+           4. Morris inorder traversal. O(1) space. with only auxiliary two pointers.
 */
 
 /**
@@ -83,6 +83,41 @@ public class Solution {
                 }
                 pre = cur;
                 cur = cur.right;
+            }
+        }
+        if (first == null) return;
+        int tmp = first.val;
+        first.val = second.val;
+        second.val = tmp;
+    }
+
+    public void recoverTree_4(TreeNode root) {
+        if (root == null) return;
+        TreeNode cur = root, pre = null, first = null, second = null;
+        while (cur != null) {
+            if (cur.left == null) {
+                if (pre != null && pre.val > cur.val) {
+                    if (first == null) first = pre;
+                    second = cur;
+                }
+                pre = cur;
+                cur = cur.right;
+            } else {
+                TreeNode node = cur.left;
+                while (node.right != null && node.right != cur)
+                    node = node.right;
+                if (node.right != null) {
+                    if (pre != null && pre.val > cur.val) {
+                        if (first == null) first = pre;
+                        second = cur;
+                    }
+                    pre = cur;
+                    node.right = null;
+                    cur = cur.right;
+                } else {
+                    node.right = cur;
+                    cur = cur.left;
+                }
             }
         }
         if (first == null) return;
