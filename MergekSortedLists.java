@@ -10,15 +10,6 @@
  Solution: Find the smallest list-head first using minimum-heap(lgk).
            complexity: O(N*KlgK)
  */
-
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
 /**
  * Definition for singly-linked list.
  * public class ListNode {
