@@ -22,6 +22,7 @@ public class Solution {
             if (i > last) {
                 res++;
                 last = cur;
+                if (cur >= n - 1) return res;
             }
             cur = Math.max(cur, i + A[i]);
         }
