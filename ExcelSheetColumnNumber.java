@@ -1,7 +1,7 @@
 /*
  Author:     King, wangjingui@outlook.com
- Date:       Jul 11, 2013
- Problem:    Unique Binary Search Trees II
+ Date:       Dec 28, 2014
+ Problem:    Excel Sheet Column Number
  Difficulty: Medium
  Source:     https://oj.leetcode.com/problems/excel-sheet-column-number/
  Notes:
