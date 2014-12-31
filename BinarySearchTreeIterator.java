@@ -23,7 +23,7 @@
  * }
  */
 
-public class BSTIterator {
+public class BSTIterator_1 {
 
     public BSTIterator(TreeNode root) {
         stk = new Stack<TreeNode>();
@@ -50,6 +50,46 @@ public class BSTIterator {
         return res;  
     }
     private Stack<TreeNode> stk;
+    private TreeNode node;
+}
+
+
+public class BSTIterator_2 {
+
+    public BSTIterator(TreeNode root) {
+        node = root;
+    }
+
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return node != null;
+    }
+
+    /** @return the next smallest number */
+    public int next() {
+        if (node == null) return 0;
+        int res = 0;
+        while (node != null) {
+            if (node.left == null) {
+                res = node.val;
+                node = node.right;
+                return res;
+            }
+            TreeNode pre = node.left;
+            while (pre.right != null && pre.right != node) 
+                pre = pre.right;
+            if (pre.right == null) {
+                pre.right = node;
+                node = node.left;
+            } else {
+                res = node.val;
+                node = node.right;
+                pre.right = null;
+                return res;
+            }
+        }
+        return res;
+    }
     private TreeNode node;
 }
 
