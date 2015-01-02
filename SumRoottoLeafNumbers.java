@@ -17,61 +17,29 @@
  Return the sum = 12 + 13 = 25.
 
  Solution: 1. Recursion (add to sum when reaching the leaf).
-           2. Iterative solution.
  */
+
 
 /**
  * Definition for binary tree
- * struct TreeNode {
+ * public class TreeNode {
  *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
  */
-class Solution {
-public:
-    int sumNumbers(TreeNode *root) {
-        return sumNumbers_1(root);
+public class Solution {
+    public int sumNumbers(TreeNode root) {
+        if (root == null) return 0;
+        return sumNumbersRe(root,0);
     }
-    
-    int sumNumbers_1(TreeNode *root) {
-        int sum = 0;
-        sumNumbersRe(root, 0, sum);
-        return sum;
+    public int sumNumbersRe(TreeNode root, int last) {
+        if (root == null) return 0;
+        int res = last * 10 + root.val;
+        if (root.left == null && root.right == null) return res;
+        if (root.left == null) return sumNumbersRe(root.right, res);
+        if (root.right == null) return sumNumbersRe(root.left, res);
+        return sumNumbersRe(root.left, res) + sumNumbersRe(root.right, res);
     }
-    
-    void sumNumbersRe(TreeNode *node, int num, int &sum) {
-        if (!node) return;
-        num = num * 10 + node->val;
-        if (!node->left && !node->right) { 
-            sum += num;
-            return;
-        }
-        sumNumbersRe(node->left, num, sum);
-        sumNumbersRe(node->right, num, sum);
-    }
-    
-    int sumNumbers_2(TreeNode *root) {
-        if (!root) return 0;
-        int res = 0;
-        queue<pair<TreeNode *, int>> q;
-        q.push(make_pair(root, 0));
-        while(!q.empty())
-        {
-            TreeNode *node = q.front().first;
-            int sum = q.front().second * 10 + node->val;
-            q.pop();
-            if (!node->left && !node->right)
-            {
-                res += sum;
-                continue;
-            }
-            if (node->left)
-                q.push(make_pair(node->left, sum));
-            if (node->right)
-                q.push(make_pair(node->right, sum));
-        }
-        return res;
-    }
-};
+}
