@@ -25,11 +25,11 @@
  Solution: 1. Recursion.
            2. Recursion + bit version. (fast)
               The idea is from http://www.matrix67.com/blog/archives/266 (in chinese).
+           3. Iteration.  
 */
-
 public class Solution {
     public int totalNQueens(int n) {
-        return totalNQueens_2(n);
+        return totalNQueens_3(n);
     }
     public int totalNQueens_1(int n) {
         int[] board = new int[n];
@@ -75,5 +75,29 @@ public class Solution {
                 totalNQueensRe2(n, row | pos, (ld|pos) << 1, (rd|pos) >>1, res);
             }
         }
+    }
+    public int totalNQueens_3(int n) {
+        int[] a = new int[n];
+        Arrays.fill(a,-1);
+        int res = 0;
+        int row = 0;
+        while (row >= 0) {
+            if (row == n) {
+                res++; row--;
+            }
+            int i = a[row] == -1 ? 0 : a[row] + 1;
+            for ( ; i < n; ++i) {
+                if (isValid(a, row, i)) {
+                    a[row] = i;
+                    row++;
+                    break;
+                }
+            }
+            if (i == n) {
+                a[row] = -1;
+                row--;
+            }
+        }
+        return res;
     }
 }
