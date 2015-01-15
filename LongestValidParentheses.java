@@ -1,5 +1,5 @@
 /*
- Author:     King, wangjingui@outlook.com
+ Author:     Andy, nkuwjg@gmail.com
  Date:       Dec 20, 2014
  Problem:    Longest Valid Parentheses
  Difficulty: Easy
@@ -31,7 +31,7 @@ public class Solution {
         }
         return res * 2;
     }
-    public int longestValidParentheses(String s) {
+    public int longestValidParentheses_2(String s) {
         int n = s.length();
         if (n <= 1) return 0;
         int res = 0;
@@ -46,4 +46,30 @@ public class Solution {
         }
         return res;
     }
+    public int longestValidParentheses(String s) {
+        int counter = 0, val = 0, res = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            counter += s.charAt(i) == '(' ? 1 : -1;
+            if (counter < 0) {
+                val = counter = 0;
+                continue;
+            }
+            val += s.charAt(i) == '(' ? 0 : 2;
+            res = counter == 0 ? Math.max(res, val) : res;
+        }
+        val = counter = 0;
+        for (int i = s.length() - 1; i >= 0; --i) {
+            counter += s.charAt(i) == ')' ? 1 : -1;
+            if (counter < 0) {
+                val = counter = 0;
+                continue;
+            }
+            val += s.charAt(i) == ')' ? 0 : 2;
+            res = counter == 0 ? Math.max(res, val) : res;
+        }
+        return res;
+    }
 }
+
+
+
