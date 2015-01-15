@@ -1,5 +1,5 @@
 /*
- Author:     King, wangjingui@outlook.com
+ Author:     Andy, nkuwjg@gmail.com
  Date:       Dec 25, 2014
  Problem:    Minimum Window Substring
  Difficulty: Medium

@@ -1,5 +1,5 @@
 /*
- Author:     King, wangjingui@outlook.com
+ Author:     Andy, nkuwjg@gmail.com
  Date:       Dec 13, 2014
  Problem:    Two Sum
  Difficulty: Medium
