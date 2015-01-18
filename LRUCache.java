@@ -1,5 +1,5 @@
 /*
- Author:     King, nkuwjg@gmail.com
+ Author:     Andy, nkuwjg@gmail.com
  Date:       March 12, 2014
  Problem:    LRU Cache
  Difficulty: Hard
@@ -20,7 +20,7 @@ public class LRUCache {
     private int capacity;
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        map = new LinkedHashMap<Integer, Integer>(capacity);
+        map = new LinkedHashMap<Integer, Integer>(capacity + 1);
     }
     
     public int get(int key) {
