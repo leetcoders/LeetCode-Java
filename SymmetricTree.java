@@ -1,5 +1,5 @@
 /*
- Author:     King, higuige@gmail.com
+ Author:     Andy, nkuwjg@gmail.com
  Date:       Dec 25, 2014
  Problem:    Symmetric Tree
  Difficulty: Easy
