@@ -1,5 +1,5 @@
 /*
- Author:     King, wangjingui@outlook.com
+ Author:     Andy, nkuwjg@gmail.com
  Date:       Dec 12, 2014
  Problem:    Binary Tree Level Order Traversal
  Difficulty: easy
