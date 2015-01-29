@@ -79,4 +79,3 @@ public class Solution {
         flattenRe3(root, null);
     }
 }
-
