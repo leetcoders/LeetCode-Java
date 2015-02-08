@@ -12,12 +12,16 @@
  Solution: ...
  */
 public class Solution {
-    public int trailingZeroes(int n) {
+    public int trailingZeroes_1(int n) {
         int res = 0;
         while (n != 0) {
             res += n / 5;
             n = n / 5;
         }
         return res;
+    }
+    public int trailingZeroes_2(int n) {
+        if (n == 0) return 0;
+        return n / 5 + trailingZeroes_2(n / 5);
     }
 }
